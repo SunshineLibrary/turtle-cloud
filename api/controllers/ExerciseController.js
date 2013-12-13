@@ -21,17 +21,15 @@ var UDM = require('../services/udm')
 module.exports = {
 
     "v1/user_data/*": function (req, res) {
-        var method = req.method;
+        var method = req.method
+            , username = req.session.user.username;
         if ("POST" === method) {
-            var accessToken = req.headers['access-token'] || 'test';
-            console.log("save user data(" + accessToken + "," + req.path + ")");
-
-            var result = udm.putData(accessToken, req.path, JSON.stringify(req.body));
+            console.log("post userdata:%s", username);
+            var result = udm.putData(username, req.path, JSON.stringify(req.body));
             res.send(result);
         } else if ("GET" === method) {
-            var accessToken = req.headers['access-token'] || 'test';
-            console.log("fetch user data(" + accessToken + "," + req.path + "),");
-            var result = udm.getData(accessToken, req.path);
+            console.log("get userdata:%s", username);
+            var result = udm.getData(username, req.path);
             res.send(result || {});
         }
     },
