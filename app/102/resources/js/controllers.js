@@ -12,10 +12,11 @@ angular.module('SunExercise.controllers', [])
     .controller('rootCtrl', function ($location, MaterialProvider) {
         var rootPromise = MaterialProvider.getRoot();
         rootPromise.then(function (data) {
-            if (_.find(data.subjects, function (subject) {
+            var mathSubject = _.find(data.subjects, function (subject) {
                 return (subject.id == 'math')
-            })) {
-                $location.path('/subject/' + subject.id);
+            })
+            if (mathSubject) {
+                $location.path('/subject/' + mathSubject.id);
             } else {
                 $location.path('/subject/' + data.subjects[0].id);
             }
