@@ -33,20 +33,102 @@
       
     -->
 
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="styles/ladda.min.css">
 </head>
 
 <body>
 
-<% if(!req.session.user) { %>
-<h3><a href="/register">Register</a></h3>
+<!--<% if(!req.session.user) { %>
+<h3 style="text-align:center;color:#824782"><a href="/register">Register</a></h3>
 <h3><a href="/login">Login</a></h3>
 <% }else{ %>
 <h3>Wellcome, <%= req.session.user.username %></h3>
-<a href="/logout">Logout</a>
-<% } %>
+<a href="/logout">Logout </a>
+<% } %> -->
 
-<!-- Include the view file for the current controller/route -->
-<%- body %>
+   <header class="navbar">
+    <div class="container">
+      <a href="" style="padding:15px;float:left"><img src="">LOGO</a>
+<!--      <ul class="nav-notification clearfix">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">登录</a>
+                <ul class="dropdown-menu">  
+                  <li>  
+                    <div>
+                <div class="panel-heading">
+                      登录
+                  </div>
+                  <form>
+                    <div class="panel-body">
+                          <div class="form-group">
+                              <label for="exampleInputEmail1">Email address</label>
+                              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                          </div>
+                          <div class="form-group">
+                              <label for="exampleInputPassword1">Password</label>
+                              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                          </div>
+                        </div>
+                      <div class="panel-footer">
+                          <button type="submit" class="btn btn-default">Submit</button>
+                      </div>
+                  </form>
+              </div>
+            </li>
+                </ul>
+            </li>
+        </ul>-->
+    </div>
+   </header>
+
+   <div class="main clearfix" style="position:relative;">
+    <div class="bg" style="background:url(http://giovannifilippi.com/tourapp/img/bg-slider.jpg) 100% 100% no-repeat;background-size:cover;position:absolute;top: 0;bottom: 0;left: 0;right: 0;z-index: 0;">
+    </div>
+    <div class="intro col-lg-8 col-md-8" style="text-align:center;color:#fff">
+      <!--<h2>教材同步的微视频</h2><h4>＋</h4><h2>自适应学习平台</h2><h4>＝</h4><h2>数字化学习的全程解决方案</h2>-->
+    </div>
+    
+    <div class="login panel col-lg-3 col-md-3">
+      <div class="panel-heading">
+            <h4>登录</h4>
+      </div>
+      <div class="panel-body button-demo">
+          <form>
+              <div class="form-group">
+                  <!--<label for="exampleInputEmail1">Email address</label> -->
+                  <input type="email" class="form-control input-lg" id="" placeholder="用户名/邮箱">
+              </div>
+              <div class="form-group">
+                  <!--<label for="exampleInputPassword1">Password</label> -->
+                  <input type="password" class="form-control input-lg" id="" placeholder="密码">
+              </div>
+              <button type="submit" class="ladda-button btn btn-primary pull-right" data-style="expand-right">
+                <span class="ladda-label">登录</span>
+                <span class="ladda-spinner"></span>
+                <div class="ladda-progress" style="width: 0px;"></div>
+              </button>
+              <div class="form-group">
+                  <label class="label-checkbox">
+                    <input type="checkbox">
+                    <span class="custom-checkbox"></span>
+                    下次自动登录
+                  </label>
+              </div>
+          </form>
+      </div>
+
+      <div class="panel-body">
+          <form>
+              <p>尚未开放注册</p>
+              <button type="submit" class="btn btn-default col-md-12">申请试用</button>
+          </form>
+      </div>
+    </div>
+   </div>
+
+<!-- <%- body %>Include the view file for the current controller/route -->
+
 
 
 <!--
@@ -65,11 +147,11 @@
 <script type="text/javascript" src="/js/sails.io.js"></script>
 <!-- listen on socket.io for incoming messages -->
 <script type="text/javascript" src="/js/app.js"></script>
-
+<script src="js/spin.min.js"></script>
+<script src="js/ladda.min.js"></script>
 <!-- Your scripts here? -->
 <!-- Your scripts here? -->
 <!-- Your scripts here? -->
-
 
 <!--
 
@@ -99,6 +181,26 @@
   http://sailsjs.org/#!documentation/asset-management
 
 -->
+
+<script type="text/javascript">
+
+
+console.log("yo")
+      // Bind normal buttons
+      Ladda.bind( '.button-demo button', { timeout: 2000 } );
+
+      // Bind progress buttons and simulate loading progress
+      // You can control loading explicitly using the JavaScript API
+      // as outlined below:
+
+      // var l = Ladda.create( document.querySelector( 'button' ) );
+      // l.start();
+      // l.stop();
+      // l.toggle();
+      // l.isLoading();
+      // l.setProgress( 0-1 );
+
+    </script>
 
 </body>
 </html>
