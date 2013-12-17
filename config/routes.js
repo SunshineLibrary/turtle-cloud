@@ -26,6 +26,14 @@
  *
  */
 
+module.exports = {
+    express: {
+        customMiddleware: function (app) {
+            app.use('/app', require('express').static(process.cwd() + '/app'));
+        }
+    }
+}
+
 module.exports.routes = {
 
     // By default, your root route (aka home page) points to a view
