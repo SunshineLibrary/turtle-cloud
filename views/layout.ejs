@@ -37,19 +37,11 @@
 <link rel="stylesheet" href="styles/ladda.min.css">
 </head>
 
-<body>
-
-<!--<% if(!req.session.user) { %>
-<h3 style="text-align:center;color:#824782"><a href="/register">Register</a></h3>
-<h3><a href="/login">Login</a></h3>
-<% }else{ %>
-<h3>Wellcome, <%= req.session.user.username %></h3>
-<a href="/logout">Logout </a>
-<% } %> -->
+<body style="background:url(http://giovannifilippi.com/tourapp/img/bg-slider.jpg) 100% 100% no-repeat;background-size:cover">
 
    <header class="navbar">
     <div class="container">
-      <a href="" style="padding:15px;float:left"><img src="">LOGO</a>
+      <a href=""><img src="">LOGO</a>
 <!--      <ul class="nav-notification clearfix">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown">登录</a>
@@ -83,10 +75,10 @@
    </header>
 
    <div class="main clearfix" style="position:relative;">
-    <div class="bg" style="background:url(http://giovannifilippi.com/tourapp/img/bg-slider.jpg) 100% 100% no-repeat;background-size:cover;position:absolute;top: 0;bottom: 0;left: 0;right: 0;z-index: 0;">
+    <div class="bg" style="background: 100% 100% no-repeat;background-size:cover;position:absolute;top: 0;bottom: 0;left: 0;right: 0;z-index: 0;">
     </div>
     <div class="intro col-lg-8 col-md-8" style="text-align:center;color:#fff">
-      <!--<h2>教材同步的微视频</h2><h4>＋</h4><h2>自适应学习平台</h2><h4>＝</h4><h2>数字化学习的全程解决方案</h2>-->
+      <h2>教材同步的微视频</h2><h4>＋</h4><h2>自适应学习平台</h2><h4>＝</h4><h2>数字化学习的全程解决方案</h2>
     </div>
     
     <div class="login panel col-lg-3 col-md-3">
@@ -94,16 +86,16 @@
             <h4>登录</h4>
       </div>
       <div class="panel-body button-demo">
-          <form>
+          <form method="post" action="/login">
               <div class="form-group">
                   <!--<label for="exampleInputEmail1">Email address</label> -->
-                  <input type="email" class="form-control input-lg" id="" placeholder="用户名/邮箱">
+                  <input type="text" class="form-control input-lg" id="" placeholder="用户名/邮箱" name="username">
               </div>
               <div class="form-group">
                   <!--<label for="exampleInputPassword1">Password</label> -->
-                  <input type="password" class="form-control input-lg" id="" placeholder="密码">
+                  <input type="password" class="form-control input-lg" id="" placeholder="密码" name="password">
               </div>
-              <button type="submit" class="ladda-button btn btn-primary pull-right" data-style="expand-right">
+              <button type="submit" class="ladda-button btn btn-primary pull-right" data-style="expand-right" value="submit">
                 <span class="ladda-label">登录</span>
                 <span class="ladda-spinner"></span>
                 <div class="ladda-progress" style="width: 0px;"></div>
@@ -127,8 +119,16 @@
     </div>
    </div>
 
-<!-- <%- body %>Include the view file for the current controller/route -->
+<!-- Include the view file for the current controller/route -->
+<% if(!req.session.user) { %>
+<h3><a href="/register">Register</a></h3>
+<h3><a href="/login">Login</a></h3>
+<% }else{ %>
+<h3>Wellcome, <%= req.session.user.username %></h3>
+<a href="/logout">Logout </a>
+<% } %>
 
+<%- body %>
 
 
 <!--
