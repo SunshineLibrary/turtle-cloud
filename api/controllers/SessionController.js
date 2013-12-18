@@ -20,35 +20,80 @@ module.exports = {
         res.view();
     },
 
-    login: function (req, res) {
-        res.view();
-    },
-
-    logout: function (req, res) {
-        req.session.user = null;
-        req.session.message = null;
-        res.redirect('/');
-    },
-
     registerUser: function (req, res) {
         var username = req.param('username'),
             password = req.param('password');
-        console.log('Register--->username=' + username + '  password=' + password);
+            utype = req.param('utype');
+        console.log('Register--->username=' + username + '  password=' + password + 'utype='+utype);
 
         //Fistly checkout the username have been used? if not, what the specific defintion about unique id, how about the work folow?
-        User.create({
+        Users.create({
             username: username,
-            password: password
+            password: password,
+            utype : utype
         }).done(function (err, user) {
                 if (err) {
                     console.log(err);
                     return
                 }
-                console.log('Success...' + user.username);
+
+                console.log('Success...' + user.password);
                 req.session.user = user;
                 res.redirect('/');
             });
     },
+
+    login: function (req, res) {
+        res.view();
+    },
+
+    loginUser: function (req, res) {
+        var username = req.param('username'),
+            password = req.param('password'), 
+            bcrypt = require('bcrypt');
+
+//前提是登陆的“username”一定是唯一的
+        Users.findOne({username: username}, function (err, user) {
+            if (err) return console.log(err);
+            if (user) {
+                //找到用户，还要判断hash后的密码是否正确
+                bcrypt.compare(password, user.password, function(err, same) {
+                      // res == true
+                      if(err) return console.log(err);
+                      if(!same) {
+                          req.session.message = '密码不正确，请重新登陆';
+                          res.redirect('/login');
+                      }else{
+                          req.session.user = user;
+                          req.session.message = '登陆成功！';
+                          res.redirect('/');        
+                      }
+                });
+                
+            } else {
+                req.session.message = '用户不存在，请重新登陆或注册';
+                res.redirect('/login');
+            }
+        });
+    },
+
+
+ /*   loginUser: function (req, res) {
+        var username = req.param('username'),
+            password = req.param('password');
+
+        Users.findOne({username: username, password: password}, function (err, user) {
+            if (err) return console.log(err);
+            if (user) {
+                req.session.user = user;
+                req.session.message = 'Login Successfully!';
+                res.redirect('/');
+            } else {
+                req.session.message = 'Username or Password is not match, Please try again';
+                res.redirect('/login');
+            }
+        });
+    },*/
 
     auth: function (req, res) {
         if (req.session.user) {
@@ -60,20 +105,9 @@ module.exports = {
         }
     },
 
-    loginUser: function (req, res) {
-        var username = req.param('username'),
-            password = req.param('password');
-
-        User.findOne({username: username, password: password}, function (err, user) {
-            if (err) return console.log(err);
-            if (user) {
-                req.session.user = user;
-                req.session.message = 'Login Successfully!';
-                res.redirect('/');
-            } else {
-                req.session.message = 'Username or Password is not match, Please try again';
-                res.redirect('/login');
-            }
-        });
+    logout: function (req, res) {
+        req.session.user = null;
+        req.session.message = null;
+        res.redirect('/');
     }
 };
