@@ -1,4 +1,4 @@
-<h2>Login</h2>
+<!-- <h2>Login</h2>
 <% if(req.session.message) {%>
   <h4><%= req.session.message %>
 <% } %>
@@ -14,4 +14,146 @@
   <div>
     <input type="submit" value="Submit">
   </div>
-</form>
+</form> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        For demonstration purposes, the `title` is dynamically set here based on
+        your `sails.config.appName` to show that you can inject data into layouts
+        exactly the same way as with your other view templates.
+    -->
+    <title><%- title %></title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!--
+
+      Stylesheets
+      ========================
+
+      You can link any CSS, LESS, or image files in your `assets` directory
+      as you would normally: using <link/> tags.
+      
+    -->
+
+    <!--
+
+      Support for LESS included by default
+      ================================================
+
+      LESS files are automatically compiled when they change using the Gruntfile
+      located in the top-level of this Sails app.  If you run into issues with styles
+      not reloading, check the Sails log output in your console for LESS compilation errors.
+      If necessary, shut down and then lift your app again.
+      
+    -->
+<link rel="stylesheet" href="styles/ladda.min.css">
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body style="background:url(http://giovannifilippi.com/tourapp/img/bg-slider.jpg) 100% 100% no-repeat;background-size:cover">
+
+   <header class="navbar">
+    <div class="container">
+      <h1><a href=""  style="color:#fff"><img src="">光合新知</a></h1>
+<!--      <ul class="nav-notification clearfix">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">登录</a>
+                <ul class="dropdown-menu">  
+                  <li>  
+                    <div>
+                <div class="panel-heading">
+                      登录
+                  </div>
+                  <form>
+                    <div class="panel-body">
+                          <div class="form-group">
+                              <label for="exampleInputEmail1">Email address</label>
+                              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                          </div>
+                          <div class="form-group">
+                              <label for="exampleInputPassword1">Password</label>
+                              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                          </div>
+                        </div>
+                      <div class="panel-footer">
+                          <button type="submit" class="btn btn-default">Submit</button>
+                      </div>
+                  </form>
+              </div>
+            </li>
+                </ul>
+            </li>
+        </ul>-->
+    </div>
+   </header>
+
+   <div class="container clearfix" style="position:relative;">
+    <div class="bg" style="background: 100% 100% no-repeat;background-size:cover;position:absolute;top: 0;bottom: 0;left: 0;right: 0;z-index: 0;">
+    </div>
+    <div class="intro col-lg-8 col-md-8" style="text-align:center;color:#fff">
+      <h2>教材同步的微视频</h2><h4>＋</h4><h2>自适应学习平台</h2><h4>＝</h4><h2>数字化学习的全程解决方案</h2>
+    </div>
+    
+    <div class="login panel col-lg-4 col-md-4">
+      <div class="panel-heading">
+            <h4>登录</h4>
+      </div>
+      <div class="panel-body button-demo">
+          <form method="post" action="/login">
+              <div class="form-group">
+                  <!--<label for="exampleInputEmail1">Email address</label> -->
+                  <input type="text" class="form-control input-lg" id="" placeholder="用户名/邮箱" name="username">
+              </div>
+              <div class="form-group">
+                  <!--<label for="exampleInputPassword1">Password</label> -->
+                  <input type="password" class="form-control input-lg" id="" placeholder="密码" name="password">
+              </div>
+              <button type="submit" class="ladda-button btn btn-primary pull-right" data-style="expand-right" value="submit">
+                <span class="ladda-label">登录</span>
+                <span class="ladda-spinner"></span>
+                <div class="ladda-progress" style="width: 0px;"></div>
+              </button>
+              <div class="form-group">
+                  <label class="label-checkbox">
+                    <input type="checkbox">
+                    <span class="custom-checkbox"></span>
+                    下次自动登录
+                  </label>
+              </div>
+          </form>
+      </div>
+
+      <div class="panel-body">
+          <form>
+              <p>尚未开放注册</p>
+              <button type="submit" class="btn btn-default col-md-12">申请试用</button>
+          </form>
+      </div>
+    </div>
+   </div>
+
+
+  <script src="js/spin.min.js"></script>
+  <script src="js/ladda.min.js"></script>
+  <script type="text/javascript">
+      // Bind normal buttons
+      Ladda.bind( '.button-demo button', { timeout: 2000 } );
+
+      // Bind progress buttons and simulate loading progress
+      // You can control loading explicitly using the JavaScript API
+      // as outlined below:
+
+      // var l = Ladda.create( document.querySelector( 'button' ) );
+      // l.start();
+      // l.stop();
+      // l.toggle();
+      // l.isLoading();
+      // l.setProgress( 0-1 );
+
+    </script>
+</body>
+</html>
