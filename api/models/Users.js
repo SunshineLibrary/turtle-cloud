@@ -10,22 +10,26 @@ module.exports = {
 
   attributes: {
       username : {
-      	type : 'string',
-      	required : true
+      	  type : 'string',
+        required : true
       },
+
       password : { 
-      	type : 'string',
-      	required : true
+      	  type : 'string',
+      	  required : true
       },
+
       utype : {
-      	type : 'string',
-      	required : true
+      	  type : 'string',
+      	  required : true
       },
+
       email : {
-      	type : 'string'
+      	  type : 'string'
       },
-      classrooms : {
-      	type : 'array'
+
+      room_ids : {
+        type : 'array'
       }
   },
 

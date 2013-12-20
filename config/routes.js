@@ -41,7 +41,7 @@ module.exports.routes = {
     //
     // (This would also work if you had a file at: `/views/home.ejs`)
     '/': {
-        view: 'home/index'
+        view: '/login'
     },
 
     '/apps': {
@@ -74,7 +74,71 @@ module.exports.routes = {
     'get /auth' : {
         controller: 'SessionController',
         action : 'auth'
+    },
+
+    //--------------------------The New API-------------------------------------------------------
+    //getUsersByType...
+    'get /users' : {
+        controller : 'UsersController',
+        action : 'showAllUsers'
+    },
+
+    'post /users' : {
+        controller : 'UsersController',
+        action : 'createUser'
+    },
+
+    'get /users/:id' : {
+        controller : 'UsersController',
+        action : 'showUserInfo'
+    },
+
+    'delete /users/:id' : {
+        controller : 'UsersController',
+        action : 'destroyUser'
+    },
+
+    'get /users/:id/rooms' : {
+        controller : 'UsersController',
+        action : 'getClassroomsByUser'
+    },
+
+    'post /users/:id/rooms' : { // post /rooms/:id/users  add a student to a classroom   or   add a classroom to a user(teacher)
+        controller : 'ClassroomsController',
+        action : 'addUserToClassroom'
+    },
+
+    'delete /users/:user_id/rooms/:room_id' : {
+        controller : 'ClassroomsController',
+        action : 'destroyUserFromClassroom'
+    },
+
+    'get /rooms/:id' : {
+        controller : 'ClassroomsController',
+        action : 'showClassroomInfo'
+    },
+
+    'get /rooms/:id/users' : {    
+        controller : 'ClassroomsController',
+        action : 'getUsersByClassroom'
+    },
+
+    'delete /rooms/:room_id/users/:user_id' : {
+        controller : 'ClassroomsController',
+        action : 'destroyStudentFromClassroom'
+    },
+
+    //----temp
+    'post /rooms/:id/users' : {   //add a classroom to a user
+        controller : 'UsersController',
+        action : 'addClassroomToUser'
+    },
+
+    'post /rooms' : {
+        controller : 'ClassroomsController',
+        action : 'createClassroom'
     }
+
 
     /*
      // But what if you want your home page to display

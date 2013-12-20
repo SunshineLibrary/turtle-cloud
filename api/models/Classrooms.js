@@ -9,8 +9,16 @@
 module.exports = {
 
   attributes: {
-  
-    
-  }
+      name : {
+      	type : 'string'
+      },
 
+      grade : {
+      	type : 'string'
+      },
+
+      user_ids : {
+      	type : 'array'
+      }
+  }
 };

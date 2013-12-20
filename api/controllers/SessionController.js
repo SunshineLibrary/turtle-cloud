@@ -66,7 +66,7 @@ module.exports = {
                       }else{
                           req.session.user = user;
                           req.session.message = '登陆成功！';
-                          res.redirect('/');        
+                          res.redirect('/app/102/index.html');        
                       }
                 });
                 
