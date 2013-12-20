@@ -40,9 +40,7 @@ module.exports.routes = {
     // located at `views/home/index.ejs`
     //
     // (This would also work if you had a file at: `/views/home.ejs`)
-    '/': {
-        view: '/login'
-    },
+    '/': 'SessionController.login',
 
     '/apps': {
         controller: 'appmanController',
