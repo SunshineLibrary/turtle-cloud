@@ -39,14 +39,6 @@
 
 <body>
 <!-- Include the view file for the current controller/route -->
-<% if(!req.session.user) { %>
-<!-- <h3><a href="/register">Register</a></h3>
-<h3><a href="/login">Login</a></h3> -->
-<% }else{ %>
-<h3>Wellcome, <%= req.session.user.username %></h3>
-<a href="/logout">Logout </a>
-<% } %>
-
 <%- body %>
 
 

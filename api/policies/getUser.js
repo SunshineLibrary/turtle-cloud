@@ -13,7 +13,7 @@ module.exports = function(req, res, next) {
       }
      next();
   } else {
-    req.session.message = 'You have not login, please login...';
+    req.session.message = '你还没有登陆，请登录...';
     return res.redirect('/login');
   }
 }

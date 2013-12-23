@@ -18,33 +18,32 @@
 module.exports = {
     register: function (req, res) {
         res.view();
+        req.session.flash = null;
     },
 
     registerUser: function (req, res) {
-        var username = req.param('username'),
-            password = req.param('password');
-            utype = req.param('utype');
-        console.log('Register--->username=' + username + '  password=' + password + 'utype='+utype);
+        var username = req.param('username');
 
-        //Fistly checkout the username have been used? if not, what the specific defintion about unique id, how about the work folow?
-        Users.create({
-            username: username,
-            password: password,
-            utype : utype
-        }).done(function (err, user) {
-                if (err) {
-                    console.log(err);
-                    return
-                }
+//TODO: Fistly checkout the username have been used? if not, what the specific defintion about unique id, how about the work folow?
+      Users.findOne({username : username}).done(function(err, user) {
+           if(user) {
+               req.session.flash = '此用户已存在，请登录或重新注册';
+               res.redirect('/register');
+           } else {
+                Users.create(req.body).done(function(err, user) {
+                    if(err) return console.log(err);
 
-                console.log('Success...' + user.password);
-                req.session.user = user;
-                res.redirect('/');
-            });
+                    req.session.user = user;
+                    res.redirect('/app/102/index.html');
+                });
+           }
+      });
     },
 
     login: function (req, res) {
-        res.view();
+        //res.local.flash = _.clone(req.session.flash);
+           res.view();
+           req.session.flash = null; 
     },
 
     loginUser: function (req, res) {
@@ -60,18 +59,22 @@ module.exports = {
                 bcrypt.compare(password, user.password, function(err, same) {
                       // res == true
                       if(err) return console.log(err);
+                      console.log('Check...');
                       if(!same) {
-                          req.session.message = '密码不正确，请重新登陆';
+                          console.log('Password not correct...');
+                          req.session.flash = '密码不正确，请重新登陆';
+                          
                           res.redirect('/login');
                       }else{
                           req.session.user = user;
-                          req.session.message = '登陆成功！';
+                          //req.session.flash = '登陆成功！';
+                          req.session.flash = null;
                           res.redirect('/app/102/index.html');        
                       }
                 });
                 
             } else {
-                req.session.message = '用户不存在，请重新登陆或注册';
+                req.session.flash = '用户不存在，请重新登陆或注册';
                 res.redirect('/login');
             }
         });
