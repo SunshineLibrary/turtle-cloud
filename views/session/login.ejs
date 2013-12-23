@@ -67,7 +67,10 @@
                   <li>  
                     <div>
                 <div class="panel-heading">
-                      登录
+                      登录 
+                      <% if(req.session.message) {%>
+                          <h4><%= req.session.message %></h4>
+                      <% } %>
                   </div>
                   <form>
                     <div class="panel-body">
@@ -101,7 +104,12 @@
     
     <div class="login panel col-lg-4 col-md-4">
       <div class="panel-heading">
-            <h4>登录</h4>
+            <h4>
+                登录
+                <% if(req.session.flash) { %> 
+                    <span class="flash"><%= req.session.flash %>  </span>
+                 <%}%>   
+            </h4>
       </div>
       <div class="panel-body button-demo">
           <form method="post" action="/login">

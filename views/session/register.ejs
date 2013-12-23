@@ -1,6 +1,6 @@
 <h2>Register</h2>
-<% if(req.session.message) { %>
- <h4> <%= req.session.message %></h4>
+<% if(req.session.flash) { %>
+ <h4> <%= req.session.flash %></h4>
 <% } %>
 <form method="post" action="/register">
   <div>

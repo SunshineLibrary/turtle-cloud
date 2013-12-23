@@ -28,7 +28,7 @@ module.exports = {
       	  type : 'string'
       },
 
-      room_ids : {
+      rooms : {
         type : 'array'
       }
   },
