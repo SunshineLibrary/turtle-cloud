@@ -17,10 +17,14 @@ module.exports.policies = {
     // Default policy for all controllers and actions
     // (`true` allows public access)
 
-    '*': 'isUser',
-    SessionController: {
-        '*': true
+    //'*' : true
+    '*': 'getUser',
+   SessionController: {
+        '*': true,
+        registerUser : 'ensureUserUnique'
     }
+    
+
 
     /*
      // Here's an example of adding some policies to a controller
