@@ -12,7 +12,7 @@
     "underscore.string": "2.3.3",
     "tar": "0.1.18",
     "archiver": "0.4.10",
-    "node-uuid": "1.4.0",
+    "node-uuid": "1.4.8",
     "adm-zip": "0.4.3",
     "request": "*",
     "ip": "0.1.0",
